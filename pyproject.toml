@@ -50,6 +50,7 @@ no-build-isolation = ["xleaf"]
 xleaf = { path = ".", editable = true }
 
 [tool.pixi.feature.dev.dependencies]
+pip = "*"
 pre-commit = "*"
 pytest = "*"
 pytest-xdist = "*"
@@ -65,7 +66,8 @@ build = { features = ["build"], solve-group = "build" }
 ##### TASKS #####
 
 [tool.pixi.feature.dev.tasks]
-test = "pytest -n auto"
+postinstall = "pip install --no-build-isolation --no-deps -e ."
+test = { cmd = "pytest -n auto", depends-on = ["postinstall"] }
 precommit = "pre-commit install"
 
 [tool.pixi.feature.build.tasks]

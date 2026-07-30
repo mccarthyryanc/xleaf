@@ -31,7 +31,7 @@ prosail_fortran_sources = files(
 
 prosail_f2py = custom_target('prosailmodule.c',
   input : prosail_fortran_sources,
-  output : ['prosailmodule.c', 'prosail-f2pywrappers.f'],
+  output : ['prosailmodule.c', 'prosail-f2pywrappers.f', 'prosail-f2pywrappers2.f90'],
   command : [py, '-m', 'numpy.f2py', '@INPUT@', '-m', 'prosail', '--lower'],
 )
 
