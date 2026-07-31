@@ -45,7 +45,6 @@ py.extension_module('prosail',
 
 py.install_sources(
   'xleaf/__init__.py',
-  'xleaf/__version__.py',
   'xleaf/parameters.py',
   'xleaf/samplers.py',
   'xleaf/simulators.py',

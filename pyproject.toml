@@ -4,7 +4,7 @@ build-backend = "mesonpy"
 
 [project]
 name = "xleaf"
-version = "1.0.0"
+version = "1.1.0"
 description = "Leaf and canopy radiative transfer modeling tools built on PROSPECT-D and SAIL"
 readme = "README.md"
 license = "MIT"
@@ -55,13 +55,14 @@ pre-commit = "*"
 pytest = "*"
 pytest-xdist = "*"
 
-[tool.pixi.feature.build.pypi-dependencies]
-hatch = "*"
+[tool.pixi.feature.build.dependencies]
+python-build = "*"
 twine = "*"
+patchelf = ">=0.11.0"
 
 [tool.pixi.environments]
 default = { features = ["dev"], solve-group = "default" }
-build = { features = ["build"], solve-group = "build" }
+build = { features = ["build"], solve-group = "default" }
 
 ##### TASKS #####
 
@@ -71,5 +72,5 @@ test = { cmd = "pytest -n auto", depends-on = ["postinstall"] }
 precommit = "pre-commit install"
 
 [tool.pixi.feature.build.tasks]
-build = "hatch build"
+build = "python -m build --no-isolation"
 deploy = { cmd = "twine upload dist/*", depends-on = ["build"] }
